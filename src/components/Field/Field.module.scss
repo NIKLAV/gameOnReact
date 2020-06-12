@@ -1,0 +1,29 @@
+
+.field {
+    width: 100px;
+    height: 100px;
+    margin: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 15px;
+    background-color: #54eaf2;
+    color: black;
+    font-size: 24px;
+    text-transform: uppercase;
+    
+    &:hover {
+        background: rgba($color: #532452, $alpha: 0.2);
+        color: white
+    }  
+}
+.dn {
+    display: none;
+}
+.db {
+    display: block;
+}
+.bb {
+    background-color: green;
+}

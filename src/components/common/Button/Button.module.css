@@ -1,0 +1,29 @@
+.button {
+    display: inline-block;
+    width: 170px;
+    padding: 10px 20px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 1.2rem;
+    background-color:#2884f6;
+    cursor: pointer;
+    margin-top: 30px;  
+}
+.button:hover {
+    color: #fff;
+    background-color: BLACK;
+    box-shadow: 0 0 10px #03fcad, 0 0 20px #03fcad;
+    transition-delay: .2s;
+}
+.button:focus {
+    outline: none;
+}
+.button:active {
+    box-shadow: inset 2px 2px 1px rgba(0, 0, 0, 0.3)
+}
+.success {
+    background-color: #1CAC78
+}
