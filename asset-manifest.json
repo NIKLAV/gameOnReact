@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/gameOnReact/static/css/main.4dd54b82.chunk.css",
+    "main.js": "/gameOnReact/static/js/main.8aed3331.chunk.js",
+    "main.js.map": "/gameOnReact/static/js/main.8aed3331.chunk.js.map",
+    "runtime-main.js": "/gameOnReact/static/js/runtime-main.12e01897.js",
+    "runtime-main.js.map": "/gameOnReact/static/js/runtime-main.12e01897.js.map",
+    "static/js/2.de0d9d9f.chunk.js": "/gameOnReact/static/js/2.de0d9d9f.chunk.js",
+    "static/js/2.de0d9d9f.chunk.js.map": "/gameOnReact/static/js/2.de0d9d9f.chunk.js.map",
+    "index.html": "/gameOnReact/index.html",
+    "precache-manifest.eb429c1b2478bfb624144591277b2fc0.js": "/gameOnReact/precache-manifest.eb429c1b2478bfb624144591277b2fc0.js",
+    "service-worker.js": "/gameOnReact/service-worker.js",
+    "static/css/main.4dd54b82.chunk.css.map": "/gameOnReact/static/css/main.4dd54b82.chunk.css.map",
+    "static/js/2.de0d9d9f.chunk.js.LICENSE.txt": "/gameOnReact/static/js/2.de0d9d9f.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.12e01897.js",
+    "static/js/2.de0d9d9f.chunk.js",
+    "static/css/main.4dd54b82.chunk.css",
+    "static/js/main.8aed3331.chunk.js"
+  ]
+}
