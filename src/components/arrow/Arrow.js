@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import classes from "./Arrow.module.scss";
-const Arrow = ({ type, num }) => {
+const Arrow = ({ num }) => {
   const transformToDirection = (num) => {
     switch (num) {
       case 1:
@@ -18,11 +18,10 @@ const Arrow = ({ type, num }) => {
   };
   let a = transformToDirection(num);
   console.log(a);
-  const cls = [classes[a], classes.right];
-
+  const cls = classes[a];
   return (
     <div className={classes.arrow}>
-      <div className={cls.join(" ")}></div>
+      <div className={cls}></div>
     </div>
   );
 };

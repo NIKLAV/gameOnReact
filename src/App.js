@@ -1,27 +1,37 @@
-import React, { useEffect, useState, useCallback, memo, useMemo } from "react";
+import React, { useEffect } from "react";
 import "./App.css";
 import Field from "./components/Field/Field";
 import Arrow from "./components/arrow/Arrow";
 import Button from "./components/common/Button/Button";
+import { useDispatch, useSelector } from "react-redux";
 const rows = 3;
 const columns = 3;
 function getRandomInRange(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-
 const App = () => {
-  const [steps, setSteps] = useState([]);
-  const [disable, setDisable] = useState(true);
-  const [disableAfterClick, setDisableAfterClick] = useState(false);
-  const [start, setStartNumber] = useState(getRandomInRange(1, rows * columns));
-  const [again, setAgain] = useState(null);
- 
+  const dispatch = useDispatch();
+  const steps = useSelector((state) => state.stepsNumbersReducer.steps);
+  const start = useSelector((state) => state.stepsNumbersReducer.start);
+  const again = useSelector((state) => state.stepsNumbersReducer.again);
+  const disableAfterClick = useSelector(
+    (state) => state.disableReducer.disableAfterClick
+  );
+  const disable = useSelector((state) => state.disableReducer.disable);
+
+  useEffect(() => {
+    dispatch({
+      type: "START_NUMBER",
+      payload: getRandomInRange(1, rows * columns),
+    }); //Генерируем рандомную стартовую клетку
+  }, []);
+
   const handleClick = () => {
-    setDisableAfterClick(true)
-    setAgain(false)
-  }
-  
+    dispatch({ type: "DISABLE_BUTTONS_AFTER_CLICK" }); //Дизейблим кнопку, после клика
+    dispatch({ type: "HIDE_TEXT" }); // переводим флажок в false и показываем текст
+  };
+
   function validateSteps(array) {
     return array.reduce((acc, item) => {
       if (acc % 3 === 1 && item === 4) return acc;
@@ -37,19 +47,19 @@ const App = () => {
 
   const createMoves = () => {
     const num = getRandomInRange(1, 4);
-    console.log(num);
-    setSteps([...steps, num]);
-    console.log(steps);
+    dispatch({ type: "SET_STEPS", payload: num }); //Записываем сгенерированные ходы в массив
   };
 
   useEffect(() => {
     if (steps.length < 10) {
+      ////генерируем ходы с задержкой
       setTimeout(createMoves, 1000);
-    } else setDisable(false);
+    } else dispatch({ type: "DISABLE_BUTTONS_WHILE_RUN" }); //дизейблим, кнопки пока ходы не будут сгенерированы;
   }, [steps]);
-  let end = validateSteps(steps);
 
-  function createField(rows, columns) {
+  let end = validateSteps(steps); //конечная победная клетка
+
+  function createField(rows, columns) {    
     let orderNumber = 0;
     let arr = [];
     for (let i = 0; i < rows; i++) {
@@ -66,22 +76,23 @@ const App = () => {
             handleClick={handleClick}
             disableAfterClick={disableAfterClick}
             again={again}
-            setAgain={setAgain}
-            
           />
         );
       }
     }
     return arr;
   }
-  const fields = createField(rows, columns);
+
+  const fields = createField(rows, columns); //создаём поля
   function newGame() {
-    setSteps([]);
-    setDisable(true);
-    setDisableAfterClick(false);
-    setStartNumber(getRandomInRange(1, rows * columns));
-    setAgain(true);
-    console.log("start", start);
+    dispatch({ type: "RESET_STEPS" }); // обнуляем наш массив ходов
+    dispatch({ type: "DISABLE_BUTTONS_WHILE_RUN" });
+    dispatch({ type: "DISABLE_BUTTONS_AFTER_CLICK" }); //переводим в стартовое положение флажок
+    dispatch({
+      type: "START_NUMBER",
+      payload: getRandomInRange(1, rows * columns),
+    }); // генерируем новую стартовую клетку
+    dispatch({ type: "HIDE_TEXT" }); //переводим флажок в true, чтобы не показывать текст
   }
   return (
     <div className="container">

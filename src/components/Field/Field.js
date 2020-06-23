@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-
 import classes from "./Field.module.scss";
 
 const Field = ({
@@ -11,7 +10,6 @@ const Field = ({
   disableAfterClick,
   again,
 }) => {
-  const clsForStart = [classes.db];
   const [final, setFinal] = useState(null);
 
   const winOrLose = () => {
@@ -33,9 +31,7 @@ const Field = ({
           onClick={(event) => winOrLose()}
           className={classes.field}
         >
-          {orderNumber === start && final === null ? (
-            <p className={clsForStart.join(" ")}>Start</p>
-          ) : null}
+          {orderNumber === start && final === null ? <p>Start</p> : null}
           {final !== null && final && !again && <p>Win</p>}
           {final !== null && !final && !again && <p>Lose</p>}
         </button>
